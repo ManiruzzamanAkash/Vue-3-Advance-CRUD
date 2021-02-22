@@ -1,5 +1,14 @@
 <template>
   <div class="product-create">
-    <h1>Product Create</h1>
+    <ProductCreateComponent />
   </div>
 </template>
+
+<script>
+import ProductCreateComponent from './../../components/products/create/ProductCreateComponent';
+export default {
+  components: {
+    ProductCreateComponent
+  }
+}
+</script>
