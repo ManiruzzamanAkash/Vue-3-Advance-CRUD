@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <VueHelper />
+    {{ authorName }}
   </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
   name: 'Home',
   components: {
     VueHelper
-  }
+  },
+  data(){
+        return{
+            authorName: this.$store.state.authorName
+        }
+    }
 }
 </script>
