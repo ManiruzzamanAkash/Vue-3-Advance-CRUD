@@ -2,35 +2,31 @@
   <div class="container">
     <h4 class="text-left mb-2">All Products</h4>
     <div class="">
-      <div class="">
+      <div class="" v-if="!isLoading">
         <table class="table table-hover">
           <thead>
             <tr>
               <td>Sl</td>
-              <td>Item Name</td>
-              <td>Item Price</td>
+              <td>Product Name</td>
+              <td>Product Price</td>
+              <td>Uploaded By</td>
               <td>Actions</td>
             </tr>
           </thead>
 
           <tbody>
             <tr v-for="(item, index) in productList" :key="item.id">
-              <td>{{ index + 1 }}</td>
-              <td>{{ item.title }}</td>
-              <td><strong class="text-danger">{{ item.price }} $</strong></td>
-              <td>
-                <router-link
-                  :to="{ name: 'ProductEdit', params: { id: item.id } }"
-                  class="btn btn-primary"
-                  >Edit</router-link
-                >
-                <button class="btn btn-danger ml-2" @click="deleteProductModal">
-                  Delete
-                </button>
-              </td>
+              <product-detail :index="index" :product="item" />
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div v-if="isLoading" class="text-center mt-5 mb-5">
+        Loading Products...
+        <div class="spinner-grow" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -38,9 +34,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import ProductDetail from "../list/ProductDetail";
 
 export default {
-  computed: { ...mapGetters(["productList"])},
+  components: {
+    ProductDetail,
+  },
+  computed: { ...mapGetters(["productList", "isLoading"]) },
 
   methods: {
     ...mapActions(["fetchAllProducts"]),
