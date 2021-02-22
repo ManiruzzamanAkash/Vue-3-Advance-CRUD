@@ -9,8 +9,8 @@ A Complete Single Page Application (SPA) using Vue, Vue Router, Bootstrap-Vue, V
 
 - [x] Vue JS Page Setup
 - [x] Vue Router Setup
-- [X] Vue-Bootstrap Setup
-- [ ] Vuex Setup for Central Storage Management
+- [x] Vue-Bootstrap Setup
+- [x] Vuex Setup for Central Storage Management
 
 ### CRUD
 - [ ] Page Design Using Bootstrap Vue
