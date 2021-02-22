@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <VueHelper />
+    <hr>
+    <h3>Author: </h3>
     {{ authorName }}
   </div>
 </template>
@@ -16,7 +18,7 @@ export default {
   },
   data(){
         return{
-            authorName: this.$store.state.authorName
+            authorName: this.$store.state.auth.authorName
         }
     }
 }
