@@ -5,11 +5,11 @@
         <h6>Add Product</h6>
       </div>
       <div class="card-body">
-        <form v-on:submit.prevent="saveProduct">
+        <form v-on:submit.prevent="onSaveProduct">
           <div class="form-group row">
             <div class="col-6">
               <label>Product Name:</label>
-              <input type="text" class="form-control" v-model="product.name" />
+              <input type="text" class="form-control" v-model="product.title" />
             </div>
             <div class="col-6">
               <label>Product Price:</label>
@@ -19,16 +19,23 @@
           <div class="form-group row">
             <div class="col-12">
               <label>Product Details:</label>
-              <textarea
-                type="number"
-                class="form-control"
-                v-model="product.description"
-              ></textarea>
+              <textarea class="form-control" v-model="product.description"></textarea>
             </div>
           </div>
           <div class="form-group">
-              <router-link to="/products" class="btn btn-secondary mr-2">Cancel</router-link>
-            <input type="submit" class="btn btn-primary" value="Add Product" />
+            <router-link to="/products" class="btn btn-secondary mr-2"
+              >Cancel</router-link
+            >
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Add Product"
+              v-if="!isCreating"
+            />
+            <button type="button" class="btn btn-primary" v-if="isCreating">
+              <div class="spinner-grow text-primary" role="status"></div>
+              Saving...
+            </button>
           </div>
         </form>
       </div>
@@ -37,7 +44,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -45,12 +53,32 @@ export default {
     };
   },
 
+  computed: { ...mapGetters(["isCreating", "createdData"]) },
+
   methods: {
-    saveProduct() {
-      let uri = "http://localhost:4000/products/add";
-      axios.post(uri, this.product).then((response) => {
-        console.log(response.data);
+    ...mapActions(["storeProduct"]),
+    onSaveProduct() {
+      const { title, price, description } = this.product;
+      this.storeProduct({
+        title: title,
+        price: price,
+        image: null,
+        description: description,
+        user_id: 1,
       });
+    },
+  },
+
+  watch: {
+    createdData: function () {
+      if (this.createdData !== null && !this.isCreating) {
+        this.$swal.fire({
+          text: "Success, Product has been added.",
+          icon: "success",
+        });
+
+        this.$router.push({ name: "Products" });
+      }
     },
   },
 };

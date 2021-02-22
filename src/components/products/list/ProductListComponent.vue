@@ -3,23 +3,17 @@
     <h4 class="text-left mb-2">All Products</h4>
     <div class="">
       <div class="" v-if="!isLoading">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td>Sl</td>
-              <td>Product Name</td>
-              <td>Product Price</td>
-              <td>Uploaded By</td>
-              <td>Actions</td>
-            </tr>
-          </thead>
+        <div class="row border-bottom border-top p-2 bg-light">
+          <div class="col-1">Sl</div>
+          <div class="col-3">Product Name</div>
+          <div class="col-2">Product Price</div>
+          <div class="col-3">Uploaded By</div>
+          <div class="col-2">Actions</div>
+        </div>
 
-          <tbody>
-            <tr v-for="(item, index) in productList" :key="item.id">
-              <product-detail :index="index" :product="item" />
-            </tr>
-          </tbody>
-        </table>
+        <div v-for="(item, index) in productList" :key="item.id">
+          <product-detail :index="index" :product="item" />
+        </div>
       </div>
 
       <div v-if="isLoading" class="text-center mt-5 mb-5">
