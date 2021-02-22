@@ -11,6 +11,11 @@
     padding: 20px;
 }
 
+.main-content {
+    position: relative;
+    min-height: 80vh;
+}
+
 #nav {
     padding: 30px;
 }
