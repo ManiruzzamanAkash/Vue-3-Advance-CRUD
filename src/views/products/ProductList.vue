@@ -1,5 +1,14 @@
 <template>
   <div class="product-list">
-    <h1>Products</h1>
+    <ProductListComponent />
   </div>
 </template>
+
+<script>
+import ProductListComponent from './../../components/products/list/ProductListComponent';
+export default {
+  components: {
+    ProductListComponent
+  }
+}
+</script>
