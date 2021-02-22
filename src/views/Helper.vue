@@ -16,6 +16,10 @@ export default {
   components: {
     VueHelper
   },
+  mounted(){
+    // console.log(' this.$store.state',  this.$store.state);
+    console.log(' this.$store.state.product',  this.$store.state.product);
+  },
   data(){
         return{
             authorName: this.$store.state.auth.authorName

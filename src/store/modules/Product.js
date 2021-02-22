@@ -1,26 +1,35 @@
-import ProductService from "../../services/ProductService";
+// import { GET_ALL_PRODUCTS } from "./Types";
+import axios from 'axios';
 
 // initial state
 const state = () => ({
-  all: []
+  products: []
 })
 
 // getters
-const getters = {}
+const getters = { 
+  productList: state => state.products
+};
 
 // actions
 const actions = {
-  getAllProducts ({ commit }) {
-    ProductService.getProducts(products => {
-      commit('setProducts', products)
-    })
+  async fetchAllProducts ({ commit }) {
+    await axios.get("http://127.0.0.1:8000/api/products/view/all")
+      .then(res => {
+        console.log('res.data.data', res.data.data);
+        
+        commit('setProducts', res.data.data.data);
+      }).catch(err => {
+        console.log('error', err);
+        
+      })
   }
 }
 
 // mutations
 const mutations = {
   setProducts (state, products) {
-    state.all = products
+    state.products = products
   },
 
   decrementProductInventory (state, { id }) {
@@ -30,7 +39,7 @@ const mutations = {
 }
 
 export default {
-  namespaced: true,
+  // namespaced: true,
   state,
   getters,
   actions,

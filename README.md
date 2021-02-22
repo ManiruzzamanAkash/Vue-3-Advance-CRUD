@@ -19,7 +19,7 @@ A Complete Single Page Application (SPA) using Vue, Vue Router, Bootstrap-Vue, V
     - [x] Product View Page Design
     - [x] Product Delete Modal
 - [ ] Product List
-    - [ ] Product List API Integration
+    - [x] Product List API Integration
     - [ ] Product Pagination
     - [ ] Product Searching
 - [ ] Product Create
