@@ -5,6 +5,12 @@
     color: #2c3e50;
 }
 
+.dashboard-widget {
+    height: 100px;
+    text-align: center;
+    padding: 20px;
+}
+
 #nav {
     padding: 30px;
 }
