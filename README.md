@@ -13,11 +13,11 @@ A Complete Single Page Application (SPA) using Vue, Vue Router, Bootstrap-Vue, V
 - [x] Vuex Setup for Central Storage Management
 
 ### CRUD
-- [ ] Page Design Using Bootstrap Vue
-    - [ ] Product List Page Design
-    - [ ] Product Create/Edit Page Design
-    - [ ] Product View Page Design
-    - [ ] Product Delete Modal
+- [x] Page Design Using Bootstrap Vue
+    - [x] Product List Page Design
+    - [x] Product Create/Edit Page Design
+    - [x] Product View Page Design
+    - [x] Product Delete Modal
 - [ ] Product List
     - [ ] Product List API Integration
     - [ ] Product Pagination
