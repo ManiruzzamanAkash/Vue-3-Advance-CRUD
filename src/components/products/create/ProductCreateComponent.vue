@@ -32,8 +32,12 @@
               value="Add Product"
               v-if="!isCreating"
             />
-            <button type="button" class="btn btn-primary" v-if="isCreating">
-              <div class="spinner-grow text-primary" role="status"></div>
+            <button class="btn btn-primary" type="button" disabled v-if="isCreating">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
               Saving...
             </button>
           </div>

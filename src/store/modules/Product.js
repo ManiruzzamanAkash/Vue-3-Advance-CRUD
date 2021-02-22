@@ -27,6 +27,7 @@ const actions = {
         commit('setProductIsLoading', false);
       }).catch(err => {
         console.log('error', err);
+        commit('setProductIsLoading', false);
       });
   },
 
@@ -49,6 +50,7 @@ const actions = {
         commit('setProductIsCreating', false);
       }).catch(err => {
         console.log('error', err);
+        commit('setProductIsCreating', false);
       });
   },
 }
