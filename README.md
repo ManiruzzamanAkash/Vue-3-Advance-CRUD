@@ -9,8 +9,11 @@ Let's check the whole demo of the application of Vue-3 Complete CRUD with Vuex:
 
 ![Demo of Main Page](https://i.ibb.co/JKM6FPN/Vue-3-Advance-CRUD.png)
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ffs_1bvOdHk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+#### View Demo From Youtube -
+<a href="https://www.youtube.com/watch?v=ffs_1bvOdHk">
+    <img src="https://img.youtube.com/vi/ffs_1bvOdHk/0.jpg" style="width:100%;">
+</a>
 
 ## Vue-3 CRUD Project Todo List
 
