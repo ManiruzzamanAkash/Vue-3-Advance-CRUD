@@ -52,7 +52,10 @@ export default {
           if (result["isConfirmed"]) {
             // Put delete logic
             this.deleteProduct(id);
-            this.fetchAllProducts(1);
+            this.fetchAllProducts({
+              page: 1,
+              search: ''
+            });
             this.$swal.fire({
               text: "Success, Product has been deleted.",
               icon: "success",

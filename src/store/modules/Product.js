@@ -32,9 +32,23 @@ const getters = {
 
 // actions
 const actions = {
-  async fetchAllProducts({ commit }, page) {
+  async fetchAllProducts({ commit }, query = null) {
+    let page = '';
+    let search = '';
+    if(query !== null){
+      page = query.page;
+      search = query.search;
+    }
+
     commit('setProductIsLoading', true);
-    await axios.get(`http://127.0.0.1:8000/api/products?page=${page}`)
+    let url = `http://127.0.0.1:8000/api/products?page=${page}`;
+    if (search === null) {
+      url = `${url}?page=${page}`;
+    } else {
+      url = `http://127.0.0.1:8000/api/products/view/search?search=${search}&page=${page}`
+    }
+
+    await axios.get(url)
       .then(res => {
         const products = res.data.data.data;
         commit('setProducts', products);
@@ -90,7 +104,7 @@ const actions = {
       });
   },
 
-  
+
   async deleteProduct({ commit }, id) {
     commit('setProductIsDeleting', true);
     await axios.delete(`http://127.0.0.1:8000/api/products/${id}`)

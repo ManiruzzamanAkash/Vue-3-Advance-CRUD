@@ -1,6 +1,18 @@
 <template>
   <div class="container">
     <h4 class="text-left mb-2">All Products</h4>
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-8"></div>
+      <div class="col-4">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search Products..."
+          @input="searchProducts"
+          v-model="query.search"
+        />
+      </div>
+    </div>
     <div class="">
       <div class="" v-if="!isLoading">
         <div class="row border-bottom border-top p-2 bg-light">
@@ -27,7 +39,7 @@
     <!-- Insert Pagination Part -->
     <div v-if="productsPaginatedData !== null" class="vertical-center mt-2 mb-5">
       <v-pagination
-        v-model="page"
+        v-model="query.page"
         :pages="productsPaginatedData.pagination.total_pages"
         :range-size="2"
         active-color="#DCEDFF"
@@ -43,6 +55,14 @@ import ProductDetail from "../list/ProductDetail";
 import VPagination from "vue3-pagination";
 
 export default {
+  data() {
+    return {
+      query: {
+        page: 1,
+        search: "",
+      },
+    };
+  },
   components: {
     ProductDetail,
     VPagination,
@@ -51,14 +71,17 @@ export default {
 
   methods: {
     ...mapActions(["fetchAllProducts"]),
-    getResults(page = 1) {
-      console.log('page', page);
-      this.fetchAllProducts(page);
+
+    getResults() {
+      this.fetchAllProducts(this.query);
+    },
+    searchProducts() {
+      this.fetchAllProducts(this.query);
     },
   },
 
   created() {
-    this.fetchAllProducts(1);
-  }
+    this.fetchAllProducts(this.query);
+  },
 };
 </script>
