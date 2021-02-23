@@ -41,11 +41,11 @@ const actions = {
     }
 
     commit('setProductIsLoading', true);
-    let url = `http://127.0.0.1:8000/api/products?page=${page}`;
+    let url = `${process.env.VUE_APP_API_URL}products?page=${page}`;
     if (search === null) {
       url = `${url}?page=${page}`;
     } else {
-      url = `http://127.0.0.1:8000/api/products/view/search?search=${search}&page=${page}`
+      url = `${process.env.VUE_APP_API_URL}products/view/search?search=${search}&page=${page}`
     }
 
     await axios.get(url)
@@ -69,7 +69,7 @@ const actions = {
 
   async fetchDetailProduct({ commit }, id) {
     commit('setProductIsLoading', true);
-    await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+    await axios.get(`${process.env.VUE_APP_API_URL}products/${id}`)
       .then(res => {
         commit('setProductDetail', res.data.data);
         commit('setProductIsLoading', false);
@@ -81,7 +81,7 @@ const actions = {
 
   async storeProduct({ commit }, product) {
     commit('setProductIsCreating', true);
-    await axios.post("http://127.0.0.1:8000/api/products", product)
+    await axios.post(`${process.env.VUE_APP_API_URL}products`, product)
       .then(res => {
         commit('saveNewProducts', res.data.data);
         commit('setProductIsCreating', false);
@@ -94,7 +94,7 @@ const actions = {
   async updateProduct({ commit }, product) {
     commit('setProductIsUpdating', true);
     commit('setProductIsUpdating', true);
-    await axios.post(`http://127.0.0.1:8000/api/products/${product.id}?_method=PUT`, product)
+    await axios.post(`${process.env.VUE_APP_API_URL}products/${product.id}?_method=PUT`, product)
       .then(res => {
         commit('saveUpdatedProduct', res.data.data);
         commit('setProductIsUpdating', false);
@@ -107,7 +107,7 @@ const actions = {
 
   async deleteProduct({ commit }, id) {
     commit('setProductIsDeleting', true);
-    await axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+    await axios.delete(`${process.env.VUE_APP_API_URL}products/${id}`)
       .then(res => {
         commit('setDeleteProduct', res.data.data.id);
         commit('setProductIsDeleting', false);
