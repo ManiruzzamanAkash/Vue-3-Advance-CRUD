@@ -4,6 +4,7 @@ import axios from 'axios';
 // initial state
 const state = () => ({
   products: [],
+  productsPaginatedData: null,
   product: null,
   isLoading: false,
   isCreating: false,
@@ -13,8 +14,9 @@ const state = () => ({
 })
 
 // getters
-const getters = { 
+const getters = {
   productList: state => state.products,
+  productsPaginatedData: state => state.productsPaginatedData,
   product: state => state.product,
   isLoading: state => state.isLoading,
   isCreating: state => state.isCreating,
@@ -25,11 +27,20 @@ const getters = {
 
 // actions
 const actions = {
-  async fetchAllProducts ({ commit }) {
+  async fetchAllProducts({ commit }, page) {
     commit('setProductIsLoading', true);
-    await axios.get("http://127.0.0.1:8000/api/products/view/all")
+    await axios.get(`http://127.0.0.1:8000/api/products?page=${page}`)
       .then(res => {
-        commit('setProducts', res.data.data.data);
+        const products = res.data.data.data;
+        commit('setProducts', products);
+        const pagination = {
+          total: res.data.data.total,  // total number of elements or items
+          per_page: res.data.data.per_page, // items per page
+          current_page: res.data.data.current_page, // current page (it will be automatically updated when users clicks on some page number).
+          total_pages: res.data.data.last_page // total pages in record
+        }
+        res.data.data.pagination = pagination;
+        commit('setProductsPaginated', res.data.data);
         commit('setProductIsLoading', false);
       }).catch(err => {
         console.log('error', err);
@@ -37,7 +48,7 @@ const actions = {
       });
   },
 
-  async fetchDetailProduct ({ commit }, id) {
+  async fetchDetailProduct({ commit }, id) {
     commit('setProductIsLoading', true);
     await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
       .then(res => {
@@ -49,7 +60,7 @@ const actions = {
       });
   },
 
-  async storeProduct ({ commit }, product) {
+  async storeProduct({ commit }, product) {
     commit('setProductIsCreating', true);
     await axios.post("http://127.0.0.1:8000/api/products", product)
       .then(res => {
@@ -61,7 +72,7 @@ const actions = {
       });
   },
 
-  async updateProduct ( { commit }, product) {
+  async updateProduct({ commit }, product) {
     commit('setProductIsUpdating', true);
     commit('setProductIsUpdating', true);
     await axios.post(`http://127.0.0.1:8000/api/products/${product.id}?_method=PUT`, product)
@@ -74,7 +85,7 @@ const actions = {
       });
   },
 
-  updateProductInput({commit}, e){
+  updateProductInput({ commit }, e) {
     commit('setProductDetailInput', e);
   }
 }
@@ -83,6 +94,10 @@ const actions = {
 const mutations = {
   setProducts: (state, products) => {
     state.products = products
+  },
+
+  setProductsPaginated: (state, productsPaginatedData) => {
+    state.productsPaginatedData = productsPaginatedData
   },
 
   setProductDetail: (state, product) => {
@@ -105,15 +120,15 @@ const mutations = {
     state.updatedData = product;
   },
 
-  setProductIsLoading (state, isLoading) {
+  setProductIsLoading(state, isLoading) {
     state.isLoading = isLoading
   },
 
-  setProductIsCreating (state, isCreating) {
+  setProductIsCreating(state, isCreating) {
     state.isCreating = isCreating
   },
 
-  setProductIsUpdating (state, isUpdating) {
+  setProductIsUpdating(state, isUpdating) {
     state.isUpdating = isUpdating
   },
 

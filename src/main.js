@@ -6,6 +6,7 @@ import Store from './store/Store';
 
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import "vue3-pagination/dist/vue3-pagination.css";
 import '../node_modules/nprogress/nprogress.css';
 import './store/axios.js';
 

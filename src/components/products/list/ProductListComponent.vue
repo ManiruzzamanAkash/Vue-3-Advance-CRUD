@@ -11,7 +11,7 @@
           <div class="col-2">Actions</div>
         </div>
 
-        <div v-for="(item, index) in productList" :key="item.id">
+        <div v-for="(item, index) in productsPaginatedData.data" :key="item.id">
           <product-detail :index="index" :product="item" />
         </div>
       </div>
@@ -23,18 +23,31 @@
         </div>
       </div>
     </div>
+
+    <!-- Insert Pagination Part -->
+    <div v-if="productsPaginatedData !== null" class="vertical-center mt-2 mb-5">
+      <v-pagination
+        v-model="page"
+        :pages="productsPaginatedData.pagination.total_pages"
+        :range-size="2"
+        active-color="#DCEDFF"
+        @update:modelValue="getResults"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import ProductDetail from "../list/ProductDetail";
+import VPagination from "vue3-pagination";
 
 export default {
   components: {
     ProductDetail,
+    VPagination,
   },
-  computed: { ...mapGetters(["productList", "isLoading"]) },
+  computed: { ...mapGetters(["productList", "productsPaginatedData", "isLoading"]) },
 
   methods: {
     ...mapActions(["fetchAllProducts"]),
@@ -49,12 +62,14 @@ export default {
         showCancelButton: true,
       });
     },
+    getResults(page = 1) {
+      console.log('page', page);
+      this.fetchAllProducts(page);
+    },
   },
 
   created() {
-    this.fetchAllProducts();
-  },
-
-  mounted() {},
+    this.fetchAllProducts(1);
+  }
 };
 </script>
