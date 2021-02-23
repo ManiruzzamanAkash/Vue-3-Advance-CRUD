@@ -18,7 +18,7 @@
                 class="form-control"
                 v-model="product.title"
               />
-              <ErrorMessage name="title" />
+              <ErrorMessage name="title" class="text-danger" />
             </div>
             <div class="col-6">
               <label>Product Price:</label>
@@ -28,7 +28,7 @@
                 class="form-control"
                 v-model="product.price"
               />
-              <ErrorMessage name="price" />
+              <ErrorMessage name="price" class="text-danger" />
             </div>
           </div>
           <div class="form-group row">
@@ -36,10 +36,11 @@
               <label>Product Details:</label>
               <Field
                 name="description"
+                as="textarea"
                 class="form-control"
                 v-model="product.description"
-              ></Field>
-              <ErrorMessage name="description" />
+               />
+              <ErrorMessage name="description" class="text-danger" />
             </div>
           </div>
           <div class="form-group">
