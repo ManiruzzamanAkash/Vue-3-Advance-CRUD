@@ -10,7 +10,9 @@ const state = () => ({
   isCreating: false,
   createdData: null,
   isUpdating: false,
-  updatedData: null
+  updatedData: null,
+  isDeleting: false,
+  deletedData: null
 })
 
 // getters
@@ -23,6 +25,9 @@ const getters = {
   isUpdating: state => state.isUpdating,
   createdData: state => state.createdData,
   updatedData: state => state.updatedData,
+
+  isDeleting: state => state.isDeleting,
+  deletedData: state => state.deletedData
 };
 
 // actions
@@ -85,6 +90,19 @@ const actions = {
       });
   },
 
+  
+  async deleteProduct({ commit }, id) {
+    commit('setProductIsDeleting', true);
+    await axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+      .then(res => {
+        commit('setDeleteProduct', res.data.data.id);
+        commit('setProductIsDeleting', false);
+      }).catch(err => {
+        console.log('error', err);
+        commit('setProductIsDeleting', false);
+      });
+  },
+
   updateProductInput({ commit }, e) {
     commit('setProductDetailInput', e);
   }
@@ -102,6 +120,10 @@ const mutations = {
 
   setProductDetail: (state, product) => {
     state.product = product
+  },
+
+  setDeleteProduct: (state, id) => {
+    state.productsPaginatedData.data.filter(x => x.id !== id);
   },
 
   setProductDetailInput: (state, e) => {
@@ -130,6 +152,10 @@ const mutations = {
 
   setProductIsUpdating(state, isUpdating) {
     state.isUpdating = isUpdating
+  },
+
+  setProductIsDeleting(state, isDeleting) {
+    state.isDeleting = isDeleting
   },
 
 }

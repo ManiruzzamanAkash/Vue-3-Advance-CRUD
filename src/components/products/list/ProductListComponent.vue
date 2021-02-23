@@ -51,17 +51,6 @@ export default {
 
   methods: {
     ...mapActions(["fetchAllProducts"]),
-
-    deleteProductModal() {
-      this.$swal.fire({
-        // title: "Error!",
-        text: "Are you sure to delete the product ?",
-        icon: "error",
-        cancelButtonText: "Cancel",
-        confirmButtonText: "Yes, Confirm Delete",
-        showCancelButton: true,
-      });
-    },
     getResults(page = 1) {
       console.log('page', page);
       this.fetchAllProducts(page);
