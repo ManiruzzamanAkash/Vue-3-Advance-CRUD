@@ -4,17 +4,23 @@ import axios from 'axios';
 // initial state
 const state = () => ({
   products: [],
+  product: null,
   isLoading: false,
   isCreating: false,
-  createdData: null
+  createdData: null,
+  isUpdating: false,
+  updatedData: null
 })
 
 // getters
 const getters = { 
   productList: state => state.products,
+  product: state => state.product,
   isLoading: state => state.isLoading,
   isCreating: state => state.isCreating,
+  isUpdating: state => state.isUpdating,
   createdData: state => state.createdData,
+  updatedData: state => state.updatedData,
 };
 
 // actions
@@ -31,14 +37,15 @@ const actions = {
       });
   },
 
-  async fetchDetailProduct ({ commit }) {
+  async fetchDetailProduct ({ commit }, id) {
     commit('setProductIsLoading', true);
-    await axios.get("http://127.0.0.1:8000/api/products/view/all")
+    await axios.get(`http://127.0.0.1:8000/api/products/${id}`)
       .then(res => {
-        commit('setProducts', res.data.data.data);
-        // commit('setProductIsLoading', false);
+        commit('setProductDetail', res.data.data);
+        commit('setProductIsLoading', false);
       }).catch(err => {
         console.log('error', err);
+        commit('setProductIsLoading', false);
       });
   },
 
@@ -53,6 +60,23 @@ const actions = {
         commit('setProductIsCreating', false);
       });
   },
+
+  async updateProduct ( { commit }, product) {
+    commit('setProductIsUpdating', true);
+    commit('setProductIsUpdating', true);
+    await axios.post(`http://127.0.0.1:8000/api/products/${product.id}?_method=PUT`, product)
+      .then(res => {
+        commit('saveUpdatedProduct', res.data.data);
+        commit('setProductIsUpdating', false);
+      }).catch(err => {
+        console.log('error', err);
+        commit('setProductIsUpdating', false);
+      });
+  },
+
+  updateProductInput({commit}, e){
+    commit('setProductDetailInput', e);
+  }
 }
 
 // mutations
@@ -61,22 +85,38 @@ const mutations = {
     state.products = products
   },
 
+  setProductDetail: (state, product) => {
+    state.product = product
+  },
+
+  setProductDetailInput: (state, e) => {
+    let product = state.product;
+    product[e.target.name] = e.target.value;
+    state.product = product
+  },
+
   saveNewProducts: (state, product) => {
     state.products.unshift(product)
     state.createdData = product;
   },
 
+  saveUpdatedProduct: (state, product) => {
+    state.products.unshift(product)
+    state.updatedData = product;
+  },
+
   setProductIsLoading (state, isLoading) {
     state.isLoading = isLoading
   },
+
   setProductIsCreating (state, isCreating) {
     state.isCreating = isCreating
   },
 
-  decrementProductInventory (state, { id }) {
-    const product = state.all.find(product => product.id === id)
-    product.inventory--
-  }
+  setProductIsUpdating (state, isUpdating) {
+    state.isUpdating = isUpdating
+  },
+
 }
 
 export default {

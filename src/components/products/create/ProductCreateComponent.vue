@@ -123,20 +123,8 @@ export default {
       description: yup.string().required().min(5),
     });
 
-    // function onSubmit() {
-    //   const { title, price, description } = this.product;
-    //   this.storeProduct({
-    //     title: title,
-    //     price: price,
-    //     image: null,
-    //     description: description,
-    //     user_id: 1,
-    //   });
-    // }
-
     return {
-      schema,
-      // onSubmit,
+      schema
     };
   },
 };
