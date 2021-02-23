@@ -118,8 +118,8 @@ export default {
         user_id: 1,
       });
     },
-    updateProductInputAction (e) {
-      this.updateProductInput(e)
+    updateProductInputAction(e) {
+      this.updateProductInput(e);
     },
   },
 
@@ -129,6 +129,8 @@ export default {
         this.$swal.fire({
           text: "Success, Product has been updated successfully !",
           icon: "success",
+          position: "top-end",
+          timer: 1000,
         });
 
         this.$router.push({ name: "Products" });

@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <h4 class="text-left mb-2">All Products</h4>
     <div class="row justify-content-center mt-2 mb-2">
-      <div class="col-8"></div>
+      <div class="col-8">
+        <h4 class="text-left mb-2">All Products</h4>
+      </div>
       <div class="col-4">
         <input
           type="text"

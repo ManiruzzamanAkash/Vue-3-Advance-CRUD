@@ -108,6 +108,8 @@ export default {
         this.$swal.fire({
           text: "Success, Product has been added.",
           icon: "success",
+          position: "top-end",
+          timer: 1000,
         });
 
         this.$router.push({ name: "Products" });

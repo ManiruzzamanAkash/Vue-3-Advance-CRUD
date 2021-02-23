@@ -12,6 +12,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "font-awesome": "^4.7.0",
     "nprogress": "^0.2.0",
     "vee-validate": "^4.1.19",
     "vue": "^3.0.5",

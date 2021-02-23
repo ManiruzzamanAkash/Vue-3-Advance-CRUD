@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-2">
           <router-link to="/products/create" class="btn btn-primary p-4 dashboard-widget">
-            Create New Product
+            Create New Product <i class="fa fa-plus-circle"></i>
           </router-link>
         </div>
       </div>
