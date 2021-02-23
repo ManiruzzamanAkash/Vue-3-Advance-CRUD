@@ -46,3 +46,34 @@
 .table div {
     display: contents;
 }
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, .5);
+    border-bottom: 3px solid transparent!important;
+    margin-right: 5px!important;
+    padding: 10px 30px!important;
+    color: #000!important;
+    opacity: .9!important;
+    transition: .5s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .router-link-active,
+.navbar-light .navbar-nav .router-link-exact-active {
+    color: rgba(0, 0, 0, .5);
+    border-bottom: 3px solid #29d!important;
+    margin-right: 5px!important;
+    padding: 10px 30px!important;
+    color: #29d!important;
+    opacity: .9!important;
+}
+
+a.router-link-active {
+    color: #000!important;
+    border-bottom: 3px solid #29d!important;
+}
+
+.router-link-active.router-link-exact-active.navbar-brand {
+    background: transparent!important;
+    border-bottom: 0px !important;
+}
