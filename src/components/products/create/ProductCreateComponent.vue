@@ -8,7 +8,7 @@
         <!-- <form v-on:submit.prevent="onSaveProduct" :validation-schema="schema"> -->
         <Form @submit="onSubmit" :validation-schema="schema">
           <!-- <Form @submit="onSaveProduct" :validation-schema="schema"> -->
-          <div class="form-group row">
+          <div class="form-group row my-1">
             <div class="col-6">
               <label>Product Name:</label>
               <Field
@@ -18,7 +18,7 @@
                 class="form-control"
                 v-model="product.title"
               />
-              <ErrorMessage name="title" class="text-danger" />
+              <ErrorMessage name="title" class="text-capitalize text-danger" />
             </div>
             <div class="col-6">
               <label>Product Price:</label>
@@ -28,10 +28,10 @@
                 class="form-control"
                 v-model="product.price"
               />
-              <ErrorMessage name="price" class="text-danger" />
+              <ErrorMessage name="price" class="text-capitalize text-danger" />
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row my-1">
             <div class="col-12">
               <label>Product Details:</label>
               <Field
@@ -40,7 +40,7 @@
                 class="form-control"
                 v-model="product.description"
                />
-              <ErrorMessage name="description" class="text-danger" />
+              <ErrorMessage name="description" class="text-capitalize text-danger" />
             </div>
           </div>
           <div class="form-group">
@@ -49,11 +49,11 @@
             >
             <input
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-primary mx-2 my-2"
               value="Add Product"
               v-if="!isCreating"
             />
-            <button class="btn btn-primary" type="button" disabled v-if="isCreating">
+            <button class="btn btn-primary mx-2 my-2" type="button" disabled v-if="isCreating">
               <span
                 class="spinner-border spinner-border-sm"
                 role="status"

@@ -17,7 +17,7 @@
           </div>
           <div v-if="product !== null && !isLoading">
             <div class="form-group row">
-              <div class="col-6">
+              <div class="col-6 my-1">
                 <label>Product Name:</label>
                 <Field
                   id="title"
@@ -27,7 +27,7 @@
                   :value="product.title"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="title" class="text-danger" />
+                <ErrorMessage name="title" class="text-capitalize text-danger" />
               </div>
               <div class="col-6">
                 <label>Product Price:</label>
@@ -38,10 +38,10 @@
                   :value="product.price"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="price" class="text-danger" />
+                <ErrorMessage name="price" class="text-capitalize text-danger" />
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row my-1">
               <div class="col-12">
                 <label>Product Details:</label>
                 <Field
@@ -51,16 +51,16 @@
                   :value="product.description"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="description" class="text-danger" />
+                <ErrorMessage name="description" class="text-capitalize text-danger" />
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
               <router-link to="/products" class="btn btn-secondary mr-2"
                 >Cancel</router-link
               >
               <input
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-primary mx-2"
                 value="Save Update"
                 v-if="!isUpdating"
               />

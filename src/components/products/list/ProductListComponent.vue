@@ -76,6 +76,7 @@ export default {
     getResults() {
       this.fetchAllProducts(this.query);
     },
+
     searchProducts() {
       this.fetchAllProducts(this.query);
     },

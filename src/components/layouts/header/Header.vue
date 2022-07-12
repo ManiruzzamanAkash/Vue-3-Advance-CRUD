@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand navbar-light bg-light">
+  <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
     <div class="container">
       <router-link to="/" class="navbar-brand"># Advance Vue CRUD </router-link>
       <div class="navbar-nav mr-auto">
