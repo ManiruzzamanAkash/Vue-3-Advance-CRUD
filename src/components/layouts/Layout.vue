@@ -1,26 +1,25 @@
 <template>
   <div id="layout">
-    <Header />
+    <HeaderPartial />
     <div class="main-content">
       <div class="container mt-3">
         <router-view />
       </div>
     </div>
-    <Footer />
+    <FooterPartial />
   </div>
 </template>
 
 <script>
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
+import FooterPartial from "./footer/FooterPartial";
+import HeaderPartial from "./header/HeaderPartial";
+
 export default {
   name: "Layout",
-  props: {
-    msg: String,
-  },
+
   components: {
-    Header,
-    Footer,
+    HeaderPartial,
+    FooterPartial,
   },
 };
 </script>

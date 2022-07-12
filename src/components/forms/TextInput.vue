@@ -1,16 +1,22 @@
 <template>
-  <div class="TextInput" :class="{ 'has-error': !!errorMessage, success: meta.valid }">
+  <div
+    class="TextInput"
+    :class="{ 'has-error': !!errorMessage, success: meta.valid }"
+  >
     <label :for="name">{{ label }}</label>
     <input
-      :name="name"
       :id="name"
+      :name="name"
       :type="type"
       :value="inputValue"
       @input="handleChange"
       @blur="handleBlur"
-    />
+    >
 
-    <p class="help-message" v-show="errorMessage || meta.valid">
+    <p
+      v-show="errorMessage || meta.valid"
+      class="help-message"
+    >
       {{ errorMessage || successMessage }}
     </p>
   </div>
@@ -45,13 +51,15 @@ export default {
   setup(props) {
     // we don't provide any rules here because we are using form-level validation
     // https://vee-validate.logaretm.com/v4/guide/validation#form-level-validation
-    const { value: inputValue, errorMessage, handleBlur, handleChange, meta } = useField(
-      props.name,
-      undefined,
-      {
-        initialValue: props.value,
-      }
-    );
+    const {
+      value: inputValue,
+      errorMessage,
+      handleBlur,
+      handleChange,
+      meta,
+    } = useField(props.name, undefined, {
+      initialValue: props.value,
+    });
 
     return {
       handleChange,

@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import ProductEditComponent from './../../components/products/edit/ProductEditComponent';
+import ProductEditComponent from "./../../components/products/edit/ProductEditComponent";
+
 export default {
   components: {
-    ProductEditComponent
-  }
-}
+    ProductEditComponent,
+  },
+};
 </script>

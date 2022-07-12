@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import ProductCreateComponent from './../../components/products/create/ProductCreateComponent';
+import ProductCreateComponent from "./../../components/products/create/ProductCreateComponent";
+
 export default {
   components: {
-    ProductCreateComponent
-  }
-}
+    ProductCreateComponent,
+  },
+};
 </script>

@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import ProductListComponent from './../../components/products/list/ProductListComponent';
+import ProductListComponent from "./../../components/products/list/ProductListComponent";
+
 export default {
   components: {
-    ProductListComponent
-  }
-}
+    ProductListComponent,
+  },
+};
 </script>

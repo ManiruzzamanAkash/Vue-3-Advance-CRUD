@@ -5,13 +5,19 @@
         <h6>Edit Product</h6>
       </div>
       <div class="card-body">
-        <Form @submit="onSubmit" :validation-schema="schema">
+        <VeeForm
+          :validation-schema="schema"
+          @submit="onSubmit"
+        >
           <div v-if="isLoading">
             <div class="text-center">
-              <div class="spinner-border text-primary" role="status">
+              <div
+                class="spinner-border text-primary"
+                role="status"
+              >
                 <span class="sr-only">Loading...</span>
               </div>
-              <br />
+              <br>
               Loading Product Details
             </div>
           </div>
@@ -27,7 +33,10 @@
                   :value="product.title"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="title" class="text-capitalize text-danger" />
+                <ErrorMessage
+                  name="title"
+                  class="text-capitalize text-danger"
+                />
               </div>
               <div class="col-6">
                 <label>Product Price:</label>
@@ -38,7 +47,10 @@
                   :value="product.price"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="price" class="text-capitalize text-danger" />
+                <ErrorMessage
+                  name="price"
+                  class="text-capitalize text-danger"
+                />
               </div>
             </div>
             <div class="form-group row my-1">
@@ -51,30 +63,41 @@
                   :value="product.description"
                   @input="updateProductInputAction"
                 />
-                <ErrorMessage name="description" class="text-capitalize text-danger" />
+                <ErrorMessage
+                  name="description"
+                  class="text-capitalize text-danger"
+                />
               </div>
             </div>
             <div class="form-group my-3">
-              <router-link to="/products" class="btn btn-secondary mr-2"
-                >Cancel</router-link
+              <router-link
+                to="/products"
+                class="btn btn-secondary mr-2"
               >
+                Cancel
+              </router-link>
               <input
+                v-if="!isUpdating"
                 type="submit"
                 class="btn btn-primary mx-2"
                 value="Save Update"
-                v-if="!isUpdating"
-              />
-              <button class="btn btn-primary" type="button" disabled v-if="isUpdating">
+              >
+              <button
+                v-if="isUpdating"
+                class="btn btn-primary"
+                type="button"
+                disabled
+              >
                 <span
                   class="spinner-border spinner-border-sm"
                   role="status"
                   aria-hidden="true"
-                ></span>
+                />
                 Saving...
               </button>
             </div>
           </div>
-        </Form>
+        </VeeForm>
       </div>
     </div>
   </div>
@@ -82,45 +105,36 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import { Field, Form, ErrorMessage } from "vee-validate";
+import { Field, Form as VeeForm, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 
 export default {
+  components: {
+    Field,
+    VeeForm,
+    ErrorMessage,
+  },
+  setup() {
+    // Define a validation schema
+    const schema = yup.object({
+      title: yup.string().required().min(5),
+      price: yup.string().required(),
+      description: yup.string().required().min(5),
+    });
+
+    return {
+      schema,
+    };
+  },
+
   data() {
     return {
       id: null,
     };
   },
-  components: {
-    Field,
-    Form,
-    ErrorMessage,
-  },
 
-  created: function () {
-    this.id = this.$route.params.id;
-    this.fetchDetailProduct(this.id);
-  },
-
-  computed: { ...mapGetters(["isUpdating", "updatedData", "product", "isLoading"]) },
-
-  methods: {
-    ...mapActions(["updateProduct", "updateProductInput", "fetchDetailProduct"]),
-    onSubmit() {
-      const { title, price, description } = this.product;
-      // return false;
-      this.updateProduct({
-        id: this.id,
-        title: title,
-        price: price,
-        image: null,
-        description: description,
-        user_id: 1,
-      });
-    },
-    updateProductInputAction(e) {
-      this.updateProductInput(e);
-    },
+  computed: {
+    ...mapGetters(["isUpdating", "updatedData", "product", "isLoading"]),
   },
 
   watch: {
@@ -138,17 +152,32 @@ export default {
     },
   },
 
-  setup() {
-    // Define a validation schema
-    const schema = yup.object({
-      title: yup.string().required().min(5),
-      price: yup.string().required(),
-      description: yup.string().required().min(5),
-    });
+  created: function () {
+    this.id = this.$route.params.id;
+    this.fetchDetailProduct(this.id);
+  },
 
-    return {
-      schema,
-    };
+  methods: {
+    ...mapActions([
+      "updateProduct",
+      "updateProductInput",
+      "fetchDetailProduct",
+    ]),
+    onSubmit() {
+      const { title, price, description } = this.product;
+      // return false;
+      this.updateProduct({
+        id: this.id,
+        title: title,
+        price: price,
+        image: null,
+        description: description,
+        user_id: 1,
+      });
+    },
+    updateProductInputAction(e) {
+      this.updateProductInput(e);
+    },
   },
 };
 </script>

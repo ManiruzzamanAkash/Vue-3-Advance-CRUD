@@ -5,11 +5,12 @@
 </template>
 
 <script>
-import Layout from './components/layouts/Layout.vue';
+import Layout from "./components/layouts/Layout.vue";
+
 export default {
-  name: 'HelloWorld',
+  name: "VueCRUD",
   components: {
-    Layout
-  }
-}
+    Layout,
+  },
+};
 </script>
