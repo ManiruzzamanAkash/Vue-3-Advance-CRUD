@@ -53,7 +53,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import ProductDetail from "../list/ProductDetail";
-import VPagination from "vue3-pagination";
+import VPagination from "@hennge/vue3-pagination";
 
 export default {
   data() {
