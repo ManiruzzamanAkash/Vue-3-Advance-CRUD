@@ -10,13 +10,12 @@
   "dependencies": {
     "@hennge/vue3-pagination": "^1.0.17",
     "axios": "^0.27.2",
-    "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.23.4",
     "font-awesome": "^4.7.0",
     "nprogress": "^0.2.0",
     "vee-validate": "^4.6.0",
-    "vue": "^3.0.5",
+    "vue": "^3.2.37",
     "vue-fragment": "^1.6.0",
     "vue-router": "^4.1.2",
     "vue-sweetalert2": "^5.0.5",
@@ -31,10 +30,10 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0",
-    "node-sass": "^5.0.0",
-    "sass": "^1.32.8",
-    "sass-loader": "^10.1.1"
+    "eslint-plugin-vue": "^9.2.0",
+    "node-sass": "^7.0.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2"
   },
   "eslintConfig": {
     "root": true,
