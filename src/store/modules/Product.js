@@ -33,11 +33,11 @@ const getters = {
 // actions
 const actions = {
   async fetchAllProducts({ commit }, query = null) {
-    let page = '';
+    let page = 1;
     let search = '';
     if(query !== null){
-      page = query.page;
-      search = query.search;
+      page = query?.page || 1;
+      search = query?.search || '';
     }
 
     commit('setProductIsLoading', true);
